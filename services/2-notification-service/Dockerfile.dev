@@ -1,0 +1,22 @@
+FROM node:24-alpine3.22
+
+# Set working directory
+WORKDIR /app
+
+# Copy only dependency-related files first (better caching)
+COPY package.json package-lock.json* ./
+COPY .npmrc ./
+
+# Install dependencies
+RUN npm install && npm install -g nodemon && npm cache clean --force
+
+# Copy the rest of the source code
+COPY tsconfig.json ./
+COPY src ./src
+COPY tools ./tools
+
+# Expose dev port
+EXPOSE 4001
+
+# Run dev server
+CMD ["npm", "run", "dev"]
