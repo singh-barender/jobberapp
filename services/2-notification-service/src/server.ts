@@ -12,14 +12,14 @@ import { checkConnection } from '@notifications/elasticsearch';
 import { createConnection } from '@notifications/queues/connection';
 import { consumeAuthEmailMessages, consumeOrderEmailMessages } from '@notifications/queues/email.consumer';
 
-const SERVER_PORT = 4001;
+const SERVER_PORT = config.PORT || 4001;
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'notificationServer', 'debug');
 
-export function start(app: Application): void {
-  startServer(app);
+export async function start(app: Application): Promise<void> {
   app.use('', healthRoutes());
-  startQueues();
-  startElasticSearch();
+  await startServer(app);
+  await startQueues();
+  await startElasticSearch();
 }
 
 async function startQueues(): Promise<void> {
@@ -28,11 +28,11 @@ async function startQueues(): Promise<void> {
   await consumeOrderEmailMessages(emailChannel);
 }
 
-function startElasticSearch(): void {
-  checkConnection();
+async function startElasticSearch(): Promise<void> {
+  await checkConnection();
 }
 
-function startServer(app: Application): void {
+async function startServer(app: Application): Promise<void> {
   try {
     const httpServer: http.Server = new http.Server(app);
     log.info(`Worker with process id of ${process.pid} on notification server has started`);
