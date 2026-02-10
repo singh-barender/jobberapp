@@ -2,10 +2,25 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  // Optional: if you use path aliases from tsconfig.json
-  moduleNameMapper: {
-    '^@notifications/(.*)$': '<rootDir>/src/$1'
+  verbose: true,
+  coverageDirectory: 'coverage',
+  collectCoverage: true,
+  testPathIgnorePatterns: ['/node_modules'],
+  transform: {
+    '^.+\\.ts?$': 'ts-jest'
   },
-  // Optional: collect coverage only from your source files
-  collectCoverageFrom: ['src/**/*.ts']
+  testMatch: ['<rootDir>/src/**/test/*.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/test/*.ts?(x)', '!**/node_modules/**'],
+  coverageThreshold: {
+    global: {
+      branches: 1,
+      functions: 1,
+      lines: 1,
+      statements: 1
+    }
+  },
+  coverageReporters: ['text-summary', 'lcov'],
+  moduleNameMapper: {
+    '@notifications/(.*)': ['<rootDir>/src/$1']
+  }
 };
