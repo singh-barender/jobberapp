@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^9.3.0",
-    "@singh-barender/9-jobber-shared": "^1.4.0",
+    "@singh-barender/9-jobber-shared": "^1.7.0",
     "amqplib": "^0.10.9",
     "dotenv": "^17.2.4",
     "ejs": "^3.1.10",
