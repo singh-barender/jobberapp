@@ -9,16 +9,17 @@ import { config } from '@notifications/config';
 
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'mailTransportHelper', 'debug');
 
+const smtpTransport: Transporter = nodemailer.createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+    user: config.SENDER_EMAIL,
+    pass: config.SENDER_EMAIL_PASSWORD
+  }
+});
+
 async function emailTemplates(template: string, receiver: string, locals: IEmailLocals): Promise<void> {
   try {
-    const smtpTransport: Transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
-      auth: {
-        user: config.SENDER_EMAIL,
-        pass: config.SENDER_EMAIL_PASSWORD
-      }
-    });
     const email: Email = new Email({
       message: {
         from: `Jobber App <${config.SENDER_EMAIL}>`

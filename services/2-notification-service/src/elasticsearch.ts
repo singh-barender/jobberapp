@@ -19,8 +19,9 @@ export async function checkConnection(): Promise<void> {
       log.info(`NotificationService Elasticsearch health status - ${health.status}`);
       isConnected = true;
     } catch (error) {
-      log.error('Connection to Elasticsearch failed. Retrying...');
+      log.error('Connection to Elasticsearch failed. Retrying in 5 seconds...');
       log.log('error', 'NotificationService checkConnection() method:', error);
+      await new Promise((resolve) => setTimeout(resolve, 5000));
     }
   }
 }
