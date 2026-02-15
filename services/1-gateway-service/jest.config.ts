@@ -21,6 +21,6 @@ module.exports = {
   },
   coverageReporters: ['text-summary', 'lcov'],
   moduleNameMapper: {
-    '@notifications/(.*)': ['<rootDir>/src/$1']
+    '@gateway/(.*)': ['<rootDir>/src/$1']
   }
 };

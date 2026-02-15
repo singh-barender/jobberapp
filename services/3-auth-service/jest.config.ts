@@ -21,6 +21,7 @@ module.exports = {
   },
   coverageReporters: ['text-summary', 'lcov'],
   moduleNameMapper: {
-    '@notifications/(.*)': ['<rootDir>/src/$1']
+    '@auth/(.*)': ['<rootDir>/src/$1'],
+    '^uuid$': '<rootDir>/src/controllers/test/mocks/uuid.ts'
   }
 };

@@ -35,6 +35,10 @@ export interface IAuthDocument {
   updatedAt?: Date;
   passwordResetToken?: string;
   passwordResetExpires?: Date;
+  browserName?: string;
+  deviceType?: string;
+  otp?: string | number;
+  otpExpiration?: Date;
   comparePassword(password: string): Promise<boolean>;
   hashPassword(password: string): Promise<string>;
 }
