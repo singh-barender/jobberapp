@@ -13,7 +13,6 @@ RUN npm install && npm install -g nodemon && npm cache clean --force
 # Copy the rest of the source code
 COPY tsconfig.json ./
 COPY src ./src
-COPY tools ./tools
 
 # Expose dev port
 EXPOSE 4002
