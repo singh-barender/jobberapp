@@ -40,7 +40,7 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@elastic/elasticsearch": "^9.3.0",
+    "@elastic/elasticsearch": "^8.17.0",
     "cloudinary": "^2.9.0",
     "express": "^5.2.1",
     "http-status-codes": "^2.3.0",
