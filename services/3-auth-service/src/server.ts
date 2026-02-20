@@ -11,10 +11,10 @@ import { verify } from 'jsonwebtoken';
 import { Application, Request, Response, NextFunction, json, urlencoded } from 'express';
 import { CustomError, IAuthPayload, IErrorResponse, winstonLogger } from '@singh-barender/9-jobber-shared';
 
-import { appRoutes } from '@auth/routes';
 import { config } from '@auth/config';
-import { checkConnection } from '@auth/elasticsearch';
+import { appRoutes } from '@auth/routes';
 import { createConnection } from '@auth/queues/connection';
+import { checkConnection, createIndex } from '@auth/elasticsearch';
 
 const SERVER_PORT = 4002;
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'authenticationServer', 'debug');
@@ -68,7 +68,7 @@ async function startQueues(): Promise<void> {
 
 function startElasticSearch(): void {
   checkConnection();
-  //   createIndex('gigs');
+  createIndex('gigs');
 }
 
 function authErrorHandler(app: Application): void {

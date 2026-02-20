@@ -1,12 +1,12 @@
 import { SearchResponse } from '@elastic/elasticsearch/lib/api/types';
-import { IHitsTotal, IPaginateProps, IQueryList, ISearchResult } from '@singh-barender/9-jobber-shared';
+import { IHitsTotal, IPaginateProps, IQueryList, ISearchResult, ISellerGig } from '@singh-barender/9-jobber-shared';
 
-import { elasticSearchClient } from '@auth/elasticsearch';
+import { elasticSearchClient, getDocumentById } from '@auth/elasticsearch';
 
-// export async function gigById(index: string, gigId: string): Promise<ISellerGig> {
-//   const gig: ISellerGig = await getDocumentById(index, gigId);
-//   return gig;
-// }
+export async function gigById(index: string, gigId: string): Promise<ISellerGig> {
+  const gig: ISellerGig = await getDocumentById(index, gigId);
+  return gig;
+}
 
 export async function gigsSearch(
   searchQuery: string,

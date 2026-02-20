@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
-// import { AuthSeed } from '@gateway/controllers/auth/seed';
 // import { Signout } from '@gateway/controllers/auth/signout';
 // import { VerifyOTP } from '@gateway/controllers/auth/verify-otp';
 
 import { SignUp } from '@gateway/controllers/auth/signup';
 import { SignIn } from '@gateway/controllers/auth/signin';
+import { AuthSeed } from '@gateway/controllers/auth/seed';
 import { Password } from '@gateway/controllers/auth/password';
 import { VerifyEmail } from '@gateway/controllers/auth/verify-email';
 
@@ -24,7 +24,7 @@ class AuthRoutes {
     this.router.put('/auth/forgot-password', Password.forgotPassword);
     this.router.put('/auth/reset-password/:token', Password.resetPassword);
     this.router.put('/auth/change-password', Password.changePassword);
-    // this.router.put('/auth/seed/:count', AuthSeed.prototype.create);
+    this.router.put('/auth/seed/:count', AuthSeed.create);
     return this.router;
   }
 }
