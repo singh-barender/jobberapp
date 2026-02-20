@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:4000
+@urlPath = api/gateway/v1/auth
+
+###
+POST {{baseUrl}}/{{urlPath}}/signup
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "username": "someuser",
+  "email": "someuser@mailinator.com",
+  "password": "password123!",
+  "country": "India",
+  "profilePicture": "data:image/png;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/signin
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "username": "someuser",
+  "password": "password123!"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/search/gig/0/5/forward?query=Illustrator
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
