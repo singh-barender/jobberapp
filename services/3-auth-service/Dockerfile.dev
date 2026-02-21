@@ -7,6 +7,10 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 COPY .npmrc ./
 
+# Accept token as build argument
+ARG NPM_TOKEN
+ENV NPM_TOKEN=${NPM_TOKEN}
+
 # Install dependencies
 RUN npm install && npm install -g nodemon && npm cache clean --force
 

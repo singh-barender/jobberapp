@@ -6,7 +6,7 @@ dotenv.config({});
 
 if (process.env.ENABLE_APM === '1') {
   apm.start({
-    serviceName: 'jobber-gateway',
+    serviceName: 'jobber-auth',
     serverUrl: process.env.ELASTIC_APM_SERVER_URL,
     secretToken: process.env.ELASTIC_APM_SECRET_TOKEN,
     environment: process.env.NODE_ENV,

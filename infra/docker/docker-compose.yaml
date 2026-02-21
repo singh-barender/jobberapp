@@ -109,6 +109,8 @@ services:
     build:
       context: ../../services/2-notification-service
       dockerfile: Dockerfile.dev
+      args:
+        NPM_TOKEN: ${NPM_TOKEN}
     restart: always
     ports:
       - "4001:4001"
@@ -131,6 +133,8 @@ services:
     build:
       context: ../../services/1-gateway-service
       dockerfile: Dockerfile.dev
+      args:
+        NPM_TOKEN: ${NPM_TOKEN}
     restart: always
     ports:
       - "4000:4000"
@@ -161,6 +165,8 @@ services:
     build:
       context: ../../services/3-auth-service
       dockerfile: Dockerfile.dev
+      args:
+        NPM_TOKEN: ${NPM_TOKEN}
     restart: always
     ports:
       - 4002:4002
