@@ -1,0 +1,25 @@
+FROM node:24-alpine3.22
+
+# Set working directory
+WORKDIR /app
+
+# Copy only dependency-related files first (better caching)
+COPY package.json package-lock.json* ./
+COPY .npmrc ./
+
+# Accept token as build argument
+ARG NPM_TOKEN
+ENV NPM_TOKEN=${NPM_TOKEN}
+
+# Install dependencies
+RUN npm install && npm install -g nodemon
+
+# Copy the rest of the source code
+COPY tsconfig.json ./
+COPY src ./src
+
+# Expose dev port
+EXPOSE 4003
+
+# Run dev server
+CMD ["npm", "run", "dev"]
