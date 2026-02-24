@@ -1,4 +1,3 @@
-import 'express-async-errors';
 import http from 'http';
 
 import { Logger } from 'winston';
@@ -11,6 +10,8 @@ import { healthRoutes } from '@notifications/routes';
 import { checkConnection } from '@notifications/elasticsearch';
 import { createConnection } from '@notifications/queues/connection';
 import { consumeAuthEmailMessages, consumeOrderEmailMessages } from '@notifications/queues/email.consumer';
+
+import 'express-async-errors';
 
 const SERVER_PORT = config.PORT || 4001;
 const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'notificationServer', 'debug');

@@ -15,6 +15,8 @@ import { config } from '@gateway/config';
 import { appRoutes } from '@gateway/routes';
 import { elasticSearch } from '@gateway/elasticsearch';
 import { axiosAuthInstance } from '@gateway/services/api/auth.service';
+import { axiosBuyerInstance } from '@gateway/services/api/buyer.service';
+import { axiosSellerInstance } from '@gateway/services/api/seller.service';
 
 import 'express-async-errors';
 
@@ -64,8 +66,8 @@ export class GatewayServer {
     app.use((req: Request, _res: Response, next: NextFunction) => {
       if (req.session?.jwt) {
         axiosAuthInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
-        // axiosBuyerInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
-        // axiosSellerInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
+        axiosBuyerInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
+        axiosSellerInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
         // axiosGigInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
         // axiosMessageInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
         // axiosOrderInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;

@@ -5,8 +5,8 @@ import { healthRoutes } from '@gateway/routes/health';
 import { searchRoutes } from '@gateway/routes/search';
 import { currentUserRoutes } from '@gateway/routes/current-user';
 import { authMiddleware } from '@gateway/services/auth-middleware';
-// import { buyerRoutes } from '@gateway/routes/buyer';
-// import { sellerRoutes } from '@gateway/routes/seller';
+import { buyerRoutes } from '@gateway/routes/buyer';
+import { sellerRoutes } from '@gateway/routes/seller';
 // import { gigRoutes } from '@gateway/routes/gig';
 // import { messageRoutes } from '@gateway/routes/message';
 // import { orderRoutes } from '@gateway/routes/order';
@@ -20,8 +20,8 @@ export const appRoutes = (app: Application) => {
   app.use(BASE_PATH, searchRoutes.routes());
 
   app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoutes.routes());
-  //   app.use(BASE_PATH, authMiddleware.verifyUser, buyerRoutes.routes());
-  //   app.use(BASE_PATH, authMiddleware.verifyUser, sellerRoutes.routes());
+  app.use(BASE_PATH, authMiddleware.verifyUser, buyerRoutes.routes());
+  app.use(BASE_PATH, authMiddleware.verifyUser, sellerRoutes.routes());
   //   app.use(BASE_PATH, authMiddleware.verifyUser, gigRoutes.routes());
   //   app.use(BASE_PATH, authMiddleware.verifyUser, messageRoutes.routes());
   //   app.use(BASE_PATH, authMiddleware.verifyUser, orderRoutes.routes());
